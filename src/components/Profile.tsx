@@ -1,7 +1,6 @@
 import { 
   MapPin, 
-  Phone, 
-  Mail, 
+  Phone,
   Heart, 
   Bookmark, 
   Settings, 
