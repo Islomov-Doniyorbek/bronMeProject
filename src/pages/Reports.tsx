@@ -1,7 +1,7 @@
 import Categories from '../components/Categories';
 
-function CategoriesPage() {
+function ReportsPage() {
   return <Categories />;
 }
 
-export default CategoriesPage;
+export default ReportsPage;

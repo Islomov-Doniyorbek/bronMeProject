@@ -3,7 +3,7 @@ import { Routes, Route, Navigate, useLocation, useNavigate } from 'react-router-
 import Header from './components/Header';
 import BottomNavigation from './components/BottomNavigation';
 import HomePage from './pages/HomePage';
-import CategoriesPage from './pages/CategoriesPage';
+import CategoriesPage from './pages/Reports';
 import ReelsPage from './pages/ReelsPage';
 import BookingsPage from './pages/BookingsPage';
 import ProfilePage from './pages/ProfilePage';
@@ -14,6 +14,7 @@ import SearchPage from './pages/SearchPage';
 import StoriesPage from './pages/StoriesPage';
 import BusinessProfilePage from './pages/BusinessProfilePage';
 import Login from './components/Login';
+import ReportsPage from './pages/Reports';
 
 function App() {
   const location = useLocation();
@@ -28,7 +29,7 @@ function App() {
 
   const isAuthPage = location.pathname === '/auth';
   const isHomePage = location.pathname === '/';
-  const isMainTab = ['/', '/categories', '/reels', '/orders', '/profile'].includes(location.pathname);
+  const isMainTab = ['/', '/reports', '/reels', '/orders', '/profile'].includes(location.pathname);
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -41,7 +42,7 @@ function App() {
             <Route path="/auth" element={<AuthPage />} />
             <Route path="/login" element={<Login />} />
             <Route path="/" element={<HomePage />} />
-            <Route path="/categories" element={<CategoriesPage />} />
+            <Route path="/reports" element={<ReportsPage />} />
             <Route path="/reels" element={<ReelsPage />} />
             <Route path="/orders" element={<BookingsPage />} />
             <Route path="/profile" element={<ProfilePage />} />

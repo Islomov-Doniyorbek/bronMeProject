@@ -48,6 +48,8 @@ const SendOtpPage: React.FC = () => {
     } catch (error: unknown) {
       const err = error as { response?: { data?: { message?: string } } };
       message.error(err?.response?.data?.message || "Xatolik yuz berdi");
+      console.log(error);
+      
     } finally {
       setLoading(false);
     }

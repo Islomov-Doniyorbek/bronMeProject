@@ -4,6 +4,7 @@ import type { GetProps } from "antd";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { api } from "../shared/api";
 import { useState } from "react";
+import axios from "axios";
 
 type OTPProps = GetProps<typeof Input.OTP>;
 
@@ -24,6 +25,15 @@ const Otp: React.FC = () => {
   // ✅ Qayta yuborish uchun
   const resendOtp = useMutation({
     mutationFn: (data: { phone_number: string }) => api.post("users/send-otp/", data),
+    onError: (error: unknown) => {
+    if (axios.isAxiosError(error)) {
+      console.error("Axios error status:", error.response?.status);
+      console.error("Axios response data:", error.response?.data);
+      console.error("Axios message:", error.message);
+    } else {
+      console.error("Non-Axios error:", error);
+    }
+  },
   });
 
   const onChange: OTPProps["onChange"] = (otp) => {

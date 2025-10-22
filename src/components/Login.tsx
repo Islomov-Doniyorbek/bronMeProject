@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "../shared/store";
 import { clearSignInData } from "../shared/lib/featers/signIn.Slice";
 import { setToken } from "../shared/lib/featers/auth.Slice";
+import axios from "axios";
 
 type FieldType = {
   phone_number?: string;
@@ -19,6 +20,15 @@ const Login: React.FC = () => {
 
   const signIn = useMutation({
     mutationFn: (data: FieldType) => api.post("users/login/", data),
+    onError: (error: unknown) => {
+    if (axios.isAxiosError(error)) {
+      console.error("Axios error status:", error.response?.status);
+      console.error("Axios response data:", error.response?.data);
+      console.error("Axios message:", error.message);
+    } else {
+      console.error("Non-Axios error:", error);
+    }
+  },
   });
 
   const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
