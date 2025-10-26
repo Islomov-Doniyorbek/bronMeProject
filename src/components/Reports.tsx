@@ -56,9 +56,9 @@ const Reports = () => {
             </div>
         </div>
         <div className="relative">
-            <div className="flex flex-col justify-between overflow-hidden relative px-4 py-4 my-4 shadow-md border border-[#DEE3FB] rounded-xl h-[150px]">
+            <div className="flex flex-col justify-around overflow-hidden relative px-4 py-4 my-4 shadow-md border border-[#DEE3FB] rounded-xl h-[150px]">
                 <h2 className='text-xl font-medium'>Umumiy daromad</h2>
-                <p className='text-3xl'>6320000 so'm</p>
+                <p className='text-3xl text-[#22348A] font-bold'>6,320,000 so'm</p>
                 <img src={Deco} alt="deco" className=' absolute -top-6 -right-10' />
             </div>
             {
