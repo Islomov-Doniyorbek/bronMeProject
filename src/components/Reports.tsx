@@ -1,15 +1,14 @@
 import { Menu } from 'lucide-react';
-import React, { useState } from 'react'
 import Deco from '../../src/assets/decoration.svg'
 
-interface ReportData {
-    id: string;
-    title: string;
-    clients: number;
-    total: string;
-}
+// interface ReportData {
+//     id: string;
+//     title: string;
+//     clients: number;
+//     total: string;
+// }
 const Reports = () => {
-    const [reports, setReports] = useState<ReportData[]>([
+    const reports = [
         {
             id: "today",
             title: "Bugun",
@@ -40,7 +39,8 @@ const Reports = () => {
             clients: 44,
             total: '23900000',
         },
-    ])
+    ]
+    // setReports([])
   return (
     <div className='w-full pb-16'>
         <div className="flex items-center justify-between">
