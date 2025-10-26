@@ -32,6 +32,7 @@ const SendOtpPage: React.FC = () => {
       const res = await api.post("/users/send-otp/", {
         phone_number: phoneNumber,
       } as { phone_number: string });
+      console.log(res);
       
 
       if (res.status === 200) {

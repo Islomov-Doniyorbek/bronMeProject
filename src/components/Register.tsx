@@ -2,6 +2,7 @@ import { Button, Form, Input, type FormProps } from "antd";
 import { api } from "../shared/api";
 import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 type FieldType = {
   name: string;
@@ -17,6 +18,13 @@ const Register: React.FC = () => {
         // navigate("/");
   const register = useMutation({
     mutationFn: (data: FieldType) => api.post("users/register/", data),
+    onError: (error: unknown) => {
+    if (axios.isAxiosError(error)) {
+      console.log(error)
+    } else {
+      console.error("Non-Axios error:", error);
+    }
+  },
   });
 
   const onFinish: FormProps<FieldType>["onFinish"] = (values) => {

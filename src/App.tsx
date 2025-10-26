@@ -17,14 +17,14 @@ import ReportsPage from './pages/Reports';
 
 function App() {
   const location = useLocation();
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token && location.pathname !== '/login' && location.pathname !== '/auth') {
-      navigate('/login');
-    }
-  }, [location]);
+  // useEffect(() => {
+  //   const token = localStorage.getItem("token");
+  //   if (!token && location.pathname !== '/login' && location.pathname !== '/auth') {
+  //     navigate('/login');
+  //   }
+  // }, [location]);
 
   const isAuthPage = location.pathname === '/auth';
   const isHomePage = location.pathname === '/';
