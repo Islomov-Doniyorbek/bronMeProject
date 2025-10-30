@@ -70,7 +70,7 @@ const Reports = () => {
                                 <p>Mijozlar: {report.clients}</p>
                                 <p>Daromad: {report.total}</p>
                             </div>
-                            <img src={Deco} alt="deco" className=' absolute -top-6 -right-30' />
+                            <img src={Deco} alt="deco" className='absolute -top-6 -right-30' />
                         </div>
                     )
                 })

@@ -1,22 +1,21 @@
 import { 
   MapPin, 
   Phone,
-  Heart, 
-  Bookmark, 
-  Settings, 
-  HelpCircle, 
   LogOut,
   Edit3,
   Camera,
   ChevronRight,
   Calendar,
-  CreditCard
+  Contact2Icon,
+  Info,
+  Share,
+  LanguagesIcon
 } from 'lucide-react';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { removeToken } from '../shared/lib/featers/auth.Slice';
 import { Modal } from 'antd';
-import { ExclamationCircleOutlined } from "@ant-design/icons";
+import { ExclamationCircleOutlined, MoneyCollectFilled } from "@ant-design/icons";
 
 const { confirm } = Modal;
 
@@ -41,12 +40,13 @@ const Profile = () => {
   };
 
   const menuItems = [
-    { id: 'bookings', label: 'Mening bandlovlarim', icon: Calendar, badge: '3' },
-    { id: 'favorites', label: 'Yoqtirilganlar', icon: Heart, badge: null },
-    { id: 'saved', label: 'Saqlangan joylar', icon: Bookmark, badge: null },
-    { id: 'payments', label: 'To\'lov usullari', icon: CreditCard, badge: null },
-    { id: 'settings', label: 'Sozlamalar', icon: Settings, badge: null },
-    { id: 'help', label: 'Yordam', icon: HelpCircle, badge: null },
+    { id: '/profile-my-data', label: 'Mening ma\'lumotlarim', icon: Calendar, badge: '3' },
+    { id: '/balance', label: 'Balans', icon: MoneyCollectFilled, badge: null },
+    { id: '/income', label: 'Umumiy daromad', icon: MoneyCollectFilled, badge: null },
+    { id: '/lang-set', label: 'Til sozlamalari', icon: LanguagesIcon, badge: null },
+    { id: '/share', label: 'Ilovani ulashish', icon: Share, badge: null },
+    { id: '/about-app', label: 'Ilova haqida', icon: Info, badge: null },
+    { id: '/contact', label: 'Aloqa', icon: Contact2Icon, badge: null },
   ];
 
   // const achievements = [
@@ -101,7 +101,8 @@ const Profile = () => {
         {menuItems.map((item, index) => {
           const Icon = item.icon;
           return (
-            <button
+            <Link to={item.id}>
+              <button
               key={item.id}
               className={`w-full flex items-center justify-between p-4 hover:bg-gray-50 transition-colors ${
                 index !== menuItems.length - 1 ? 'border-b border-gray-100' : ''
@@ -122,6 +123,7 @@ const Profile = () => {
                 <ChevronRight className="w-5 h-5 text-gray-400" />
               </div>
             </button>
+            </Link>
           );
         })}
       </div>

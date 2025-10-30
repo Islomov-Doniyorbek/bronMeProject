@@ -14,6 +14,12 @@ import StoriesPage from './pages/StoriesPage';
 import BusinessProfilePage from './pages/BusinessProfilePage';
 import Login from './components/Login';
 import ReportsPage from './pages/Reports';
+import ProfileMyDataPage from './pages/ProfileMyDataPage';
+import BalancePage from './pages/BalancePage';
+import Incomings from './pages/Incomings';
+import SettingPage from './pages/SettingPage';
+import AboutAppPage from './pages/AboutAppPage';
+import ContactPage from './pages/ContactPage';
 
 function App() {
   const location = useLocation();
@@ -50,6 +56,13 @@ function App() {
             <Route path="/search" element={<SearchPage />} />
             <Route path="/stories" element={<StoriesPage />} />
             <Route path="/business-profile" element={<BusinessProfilePage />} />
+            <Route path="/profile-my-data" element={<ProfileMyDataPage />} />
+            <Route path="/balance" element={<BalancePage />} />
+            <Route path="/income" element={<Incomings />} />
+            <Route path="/lang-set" element={<SettingPage />} />
+            <Route path="/share" element={<ProfileMyDataPage />} />
+            <Route path="/about-app" element={<AboutAppPage />} />
+            <Route path="/contact" element={<ContactPage />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </main>
