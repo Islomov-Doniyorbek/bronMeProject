@@ -1,14 +1,13 @@
-import { ArrowLeftSquare } from "lucide-react"
-import { Link } from "react-router-dom"
+import ExitButton from "../components/ExitButton"
 
 
 
 const ContactPage = () => {
   return (
     <div>
-      <Link to={"/"}>
-        <ArrowLeftSquare/>
-      </Link>
+      <ExitButton/>
+
+      Contact
     </div>
   )
 }

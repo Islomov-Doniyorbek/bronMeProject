@@ -1,7 +1,7 @@
-import { ArrowBigDown, ArrowBigUp, ArrowLeftCircleIcon } from 'lucide-react'
+import { ArrowBigDown, ArrowBigUp } from 'lucide-react'
 import Deco from '../../src/assets/decoration.svg'
-import { Link } from 'react-router-dom'
 import { useState } from 'react'
+import ExitButton from '../components/ExitButton'
 
 const BalancePage = () => {
   const inOut = [
@@ -46,11 +46,7 @@ const BalancePage = () => {
   return (
     <div>
         <p className=' mt-4 flex relative justify-center items-center'>
-            <button className='absolute top-2 left-0 p-2.5 text-[16px] rounded-lg border'>
-                <Link to={'/profile'}>
-                    <ArrowLeftCircleIcon/> 
-                </Link>
-            </button>
+            <ExitButton/>
             <h3 className='text-2xl font-semibold'>Balans</h3>
             <p></p>
         </p>
