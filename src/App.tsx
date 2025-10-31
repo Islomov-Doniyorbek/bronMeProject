@@ -17,7 +17,6 @@ import ReportsPage from './pages/Reports';
 import ProfileMyDataPage from './pages/ProfileMyDataPage';
 import BalancePage from './pages/BalancePage';
 import Incomings from './pages/Incomings';
-import SettingPage from './pages/SettingPage';
 import AboutAppPage from './pages/AboutAppPage';
 import ContactPage from './pages/ContactPage';
 
@@ -50,16 +49,15 @@ function App() {
             <Route path="/reports" element={<ReportsPage />} />
             <Route path="/reels" element={<ReelsPage />} />
             <Route path="/orders" element={<BookingsPage />} />
-            <Route path="/profile" element={<ProfilePage />} />
             <Route path="/category/:categoryName" element={<CategoryDetailsPage />} />
             <Route path="/notifications" element={<NotificationsPage />} />
             <Route path="/search" element={<SearchPage />} />
             <Route path="/stories" element={<StoriesPage />} />
             <Route path="/business-profile" element={<BusinessProfilePage />} />
             <Route path="/profile-my-data" element={<ProfileMyDataPage />} />
+            <Route path="/profile" element={<ProfilePage />} />
             <Route path="/balance" element={<BalancePage />} />
             <Route path="/income" element={<Incomings />} />
-            <Route path="/lang-set" element={<SettingPage />} />
             <Route path="/share" element={<ProfileMyDataPage />} />
             <Route path="/about-app" element={<AboutAppPage />} />
             <Route path="/contact" element={<ContactPage />} />
@@ -69,6 +67,9 @@ function App() {
         {isMainTab && !isAuthPage && (
           <BottomNavigation />
         )}
+        {/* <Routes>
+          <Route path="/profile" element={<ProfilePage />} />
+        </Routes> */}
       </div>
     </div>
   );

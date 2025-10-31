@@ -1,4 +1,4 @@
-import { ArrowBigDown, ArrowBigUp, ArrowLeftCircleIcon, CardSimIcon } from 'lucide-react'
+import { ArrowBigDown, ArrowBigUp, ArrowLeftCircleIcon } from 'lucide-react'
 import Deco from '../../src/assets/decoration.svg'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
@@ -42,6 +42,7 @@ const BalancePage = () => {
     },
   ]
   const [isInOut, setIsInOut] = useState(false)
+  const b=326000
   return (
     <div>
         <p className=' mt-4 flex relative justify-center items-center'>
@@ -56,9 +57,9 @@ const BalancePage = () => {
         <div className='mt-10 mb-1 relative py-4 overflow-hidden border border-blue-500 w-full h-[200px] rounded-[7px] flex flex-col justify-between items-center'>
           <img src={Deco} className=' absolute -top-6 -right-30'  alt="deco" />
           <p className='z-10 font-semibold'>Joriy balans</p>
-          <strong className='z-10 text-xl'>362,180 so'm</strong>
+          <strong className='z-10 text-xl'>{b > 0 ? "326,000 so'm" : "Mablag' yetarli emas!"}</strong>
           <div className='flex gap-3.5 z-10'>
-            <button className='text-xl py-2 px-6 rounded-[7px] text-white bg-[#22348A]'>Chiqarish</button>
+            <button disabled={b>0} className={`${b<0 ? "cursor-pointer bg-[#22348A]" : "cursor-no-drop bg-[#54565f]"} text-xl py-2 px-6 rounded-[7px] text-white bg-[#22348A]`}>Chiqarish</button>
             <button className='text-xl py-2 px-6 rounded-[7px] text-white bg-[#22348A]'>To'ldirish</button>
           </div>
         </div>

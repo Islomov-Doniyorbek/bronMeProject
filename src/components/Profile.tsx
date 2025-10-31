@@ -16,6 +16,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { removeToken } from '../shared/lib/featers/auth.Slice';
 import { Modal } from 'antd';
 import { ExclamationCircleOutlined, MoneyCollectFilled } from "@ant-design/icons";
+import { useState } from 'react';
 
 const { confirm } = Modal;
 
@@ -40,14 +41,26 @@ const Profile = () => {
   };
 
   const menuItems = [
-    { id: '/profile-my-data', label: 'Mening ma\'lumotlarim', icon: Calendar, badge: '3' },
-    { id: '/balance', label: 'Balans', icon: MoneyCollectFilled, badge: null },
-    { id: '/income', label: 'Umumiy daromad', icon: MoneyCollectFilled, badge: null },
-    { id: '/lang-set', label: 'Til sozlamalari', icon: LanguagesIcon, badge: null },
-    { id: '/share', label: 'Ilovani ulashish', icon: Share, badge: null },
-    { id: '/about-app', label: 'Ilova haqida', icon: Info, badge: null },
-    { id: '/contact', label: 'Aloqa', icon: Contact2Icon, badge: null },
+    { id: '/profile-my-data',link:true, label: 'Mening ma\'lumotlarim', icon: Calendar, badge: '3', fnc: null },
+    { id: '/balance',link:true, label: 'Balans', icon: MoneyCollectFilled, badge: null, fnc: null },
+    { id: '/income',link:true, label: 'Umumiy daromad', icon: MoneyCollectFilled, badge: null, fnc: null },
+    { id: '/lang-set',link:false, label: 'Til sozlamalari', icon: LanguagesIcon, badge: null, fnc:()=> setIsLangBox(prev=>!prev) },
+    { id: '/share',link:false, label: 'Ilovani ulashish', icon: Share, badge: null, fnc: null },
+    { id: '/about-app',link:true, label: 'Ilova haqida', icon: Info, badge: null, fnc: null },
+    { id: '/contact',link:true, label: 'Aloqa', icon: Contact2Icon, badge: null, fnc: null },
   ];
+  const [langs, setLangs] = useState([
+    {
+      id:"uz", label: "O'zbek", isActive: true
+    },
+    {
+      id:"ru", label: "Rus", isActive: false
+    },
+    {
+      id:"en", label: "Ingliz", isActive: false
+    },
+  ])
+  const [isLangBox, setIsLangBox] = useState(false)
 
   // const achievements = [
   //   { id: 1, title: 'Dastlabki bandlov', description: 'Birinchi bandlovingizni amalga oshirdingiz', earned: true },
@@ -57,7 +70,9 @@ const Profile = () => {
   // ];
 
   return (
-    <div className="py-6 pb-24">
+    
+    <div className="relative overflow-hidden py-6 pb-24">
+      
       {/* Profile Header */}
       <div className="bg-white rounded-2xl p-6 mb-6 border border-gray-100">
         <div className="flex items-center space-x-4 mb-6">
@@ -101,8 +116,12 @@ const Profile = () => {
         {menuItems.map((item, index) => {
           const Icon = item.icon;
           return (
-            <Link to={item.id}>
-              <button
+              <Link to={
+                item.fnc === null ? item.id : "/profile"
+              }>
+                <button onClick={() => {
+                        if (item.fnc) item.fnc();
+                      }}
               key={item.id}
               className={`w-full flex items-center justify-between p-4 hover:bg-gray-50 transition-colors ${
                 index !== menuItems.length - 1 ? 'border-b border-gray-100' : ''
@@ -123,7 +142,8 @@ const Profile = () => {
                 <ChevronRight className="w-5 h-5 text-gray-400" />
               </div>
             </button>
-            </Link>
+              </Link>
+            
           );
         })}
       </div>
@@ -135,7 +155,40 @@ const Profile = () => {
         <LogOut className="w-5 h-5 text-red-600 stroke-current" />
         <span className="font-medium">Chiqish</span>
       </button>
+        <div onClick={()=>setIsLangBox(prev=>!prev)} className={`${isLangBox ? "block":"hidden"} bg-[#0000001c] z-10 absolute top-0 left-0 w-full h-full`}></div>
+      <div className={`absolute z-10 bg-white flex flex-col items-center gap-10 transition-all duration-500 ease-in-out ${isLangBox ? "bottom-0" : "-bottom-[500px]"} w-full rounded-t-2xl h-[500px] `}>
+        <div></div>
+        <h2 className='font-semibold text-2xl'>Ilova tilini tanlang</h2>
+        <p>Davom etishi uchun ilova tilini tanlang</p>
+        <div className='w-full flex flex-col items-center'>
+          <ul className='w-full'>
+            {
+              langs.map(lang=>{
+                return (
+                  <li
+                  onClick={() => {
+                    setLangs(prev =>
+                      prev.map(lng => ({
+                        ...lng,
+                        isActive: lng.id === lang.id, 
+                      }))
+                    );
+                  }} 
+                   className='flex justify-start border-b my-4 py-2 px-4 font-medium'>
+                    <div className={`${lang.isActive ? "bg-blue-500": "bg-transparent border-gray-600"} w-[30px] h-[30px] mr-6 rounded-full border-4 border-blue-500`}></div> 
+                    {lang.label}
+                  </li>
+                )
+              })
+            }
+            
+          </ul>
+          <button onClick={()=>setIsLangBox(prev=>!prev)} className='text-xl mt-6 w-full py-2 px-6 rounded-[7px] text-white bg-[#22348A]'>Saqlash</button>
+        </div>
+      </div>
     </div>
+
+    
   );
 };
 
