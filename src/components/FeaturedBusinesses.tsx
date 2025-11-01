@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Star, Heart, Bookmark } from 'lucide-react';
+import { Heart, Bookmark, HourglassIcon, CreditCard } from 'lucide-react';
 
 const FeaturedBusinesses = () => {
   const [likedItems, setLikedItems] = useState<number[]>([]);
@@ -7,32 +7,40 @@ const FeaturedBusinesses = () => {
   const businesses = [
     {
       id: 1,
-      title: "Har bir mehmon o'zini erkin va xotirjam his qiladigan zamonaviy...",
-      rating: 9.6,
-      category: "Kafe nomi",
+      paymentType: "Elektron",
+      ePaymentType: "ClickUp",
+      payment: "120 000",
+      time: "11:00, 31.10.2025",
+      category: "Soch olish",
       image: "https://images.pexels.com/photos/1581384/pexels-photo-1581384.jpeg?auto=compress&cs=tinysrgb&w=400",
     },
     {
       id: 2,
-      title: "Har bir mehmon o'zini erkin va xotirjam his qiladigan zamonaviy...",
-      rating: 9.6,
-      category: "Kafe nomi",
-      image: "https://images.pexels.com/photos/1267320/pexels-photo-1267320.jpeg?auto=compress&cs=tinysrgb&w=400",
+      paymentType: "Naqd",
+      ePaymentType: "",
+      payment: "",
+      time: "12:00, 31.10.2025",
+      category: "Soqol olish",
+      image: "https://images.pexels.com/photos/1581384/pexels-photo-1581384.jpeg?auto=compress&cs=tinysrgb&w=400",
     },
     {
       id: 3,
-      title: "Har bir mehmon o'zini erkin va xotirjam his qiladigan zamonaviy...",
-      rating: 9.6,
-      category: "Kafe nomi",
-      image: "https://images.pexels.com/photos/1851164/pexels-photo-1851164.jpeg?auto=compress&cs=tinysrgb&w=400",
+      paymentType: "Naqd",
+      ePaymentType: "",
+      payment: "",
+      time: "13:00, 31.10.2025",
+      category: "Soch olish",
+      image: "https://images.pexels.com/photos/1581384/pexels-photo-1581384.jpeg?auto=compress&cs=tinysrgb&w=400",
     },
     {
       id: 4,
-      title: "Har bir mehmon o'zini erkin va xotirjam his qiladigan zamonaviy...",
-      rating: 9.6,
-      category: "Kafe nomi",
-      image: "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=400",
-    }
+      paymentType: "Elektron",
+      ePaymentType: "Paynet",
+      payment: "70 000",
+      time: "13:00, 31.10.2025",
+      category: "Soch olish",
+      image: "https://images.pexels.com/photos/1581384/pexels-photo-1581384.jpeg?auto=compress&cs=tinysrgb&w=400",
+    },
   ];
 
   const toggleLike = (itemId: number) => {
@@ -44,14 +52,14 @@ const FeaturedBusinesses = () => {
   };
 
   return (
-    <div className="mb-6">
+    <div className="mb-20">
       <div className="space-y-4">
         {businesses.map((item) => (
           <div key={item.id} className="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-200">
             <div className="relative">
               <img 
                 src={item.image} 
-                alt={item.title}
+                alt="barber"
                 className="w-full h-48 object-cover"
               />
               <button 
@@ -68,15 +76,15 @@ const FeaturedBusinesses = () => {
             
             <div className="p-4">
               <p className="text-gray-800 text-sm mb-3 leading-relaxed">
-                {item.title}
+                {item.category}
               </p>
               
-              <div className="flex items-center space-x-2">
+              <div className=" space-x-2">
                 <div className="flex items-center">
-                  <Star className="w-4 h-4 text-green-500 fill-current mr-1" />
-                  <span className="text-sm font-medium text-gray-900">{item.rating}</span>
+                  <HourglassIcon className="w-4 h-4 text-green-500 fill-current mr-1" />
+                  <span className="text-sm font-medium text-gray-900">{item.time}</span>
                 </div>
-                <span className="text-sm text-gray-500">{item.category}</span>
+                <p className=" flex gap-2 items-center text-sm text-gray-500"><CreditCard/> {item.paymentType === "Elektron" ? `${item.paymentType}(${item.ePaymentType}): ${item.payment} so'm` : item.paymentType}</p>
               </div>
             </div>
           </div>
